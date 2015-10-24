@@ -12,43 +12,43 @@ Heroku を使います。
 デプロイ
 ----------------
 1. clone します
-```
-git clone https://github.com/ozamasa/somen.git
-```
+ ```
+ git clone https://github.com/ozamasa/somen.git
+ ```
 
 2. heroku にログインしプロジェクトを作ります
-```
-cd somen
-heroku login
-heroku create somen
-```
+ ```
+ cd somen
+ heroku login
+ heroku create somen
+ ```
 
 3. heroku に push します
-```
-git push heroku master
-```
+ ```
+ git push heroku master
+ ```
 
 4. db:migrate します
-```
-heroku run rake db:migrate
-```
+ ```
+ heroku run rake db:migrate
+ ```
 
 5. basic認証のためのユーザー名、パスワードを設定します
-```
-heroku config:set AUTH_USERNAME=hogehoge
-heroku config:set AUTH_PASSWORD=fugafuga
-```
+ ```
+ heroku config:set AUTH_USERNAME=hogehoge
+ heroku config:set AUTH_PASSWORD=fugafuga
+ ```
 
 6. mandrillのユーザー名、APIキーを設定します
-```
-heroku config:set MANDRILL_USERNAME=xxx@heroku.com
-heroku config:set MANDRILL_APIKEY=xxxxxx
-```
+ ```
+ heroku config:set MANDRILL_USERNAME=xxx@heroku.com
+ heroku config:set MANDRILL_APIKEY=xxxxxx
+ ```
 
 7. ブラウザで確認できます
-```
-heroku open
-```
+ ```
+ heroku open
+ ```
 
 
 ライセンス
