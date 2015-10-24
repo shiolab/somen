@@ -1,0 +1,38 @@
+<!--
+<p id="notice"><%#= notice %></p>
+-->
+<% content_for :actions do %>
+  <div class="action-area">
+    <%= link_to organization_mailforms_path(@mailform.organization), class: "btn-round btn-back" do %>
+      <span class="glyphicon glyphicon-arrow-left"></span>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="page-header">
+  <h1 id="tables"><%= @mailform.organization.name %></h1>
+  <h2 id="tables"><%= @mailform.subject %></h2>
+</div>
+
+<%= yield :actions %>
+
+<div class="row">
+  <div class="col-md-12">
+    <% @histories.each do |hist| %>
+    <div class="panel panel-primary rounded">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-8">
+            <strong><%= link_to "#{hdatetime(hist.try(:created_at))}", "/results/#{hist.id}" %></strong>
+            <% if false %><strong><%= link_to "#{hdatetime(mailform.sent_logs.first.try(:created_at))} 〜 #{hdatetime(mailform.sent_logs.last.try(:created_at))}", "/results/#{mailform.id}" %></strong><% end %>
+          </div>
+          <div class="col-md-2">送信 <span class="badge"><%= hist.sent_logs.count %></div>
+          <div class="col-md-2">アクセス <span class="badge"><%= hist.access_logs.count %></div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<%= yield :actions %>

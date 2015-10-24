@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+/* universal */
+.clear {
+  clear: both;
+}
+
+* {
+  font-family: Meiryo, "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+body {
+  background-color: #F8F8F8;
+}
+
+.theme-showcase {
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.action-area {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.rounded {
+  border-radius:50px;
+}
+
+.mail > dl {
+  margin-bottom: 0;
+}
+
+.mail > .dl-horizontal dt  {
+  width: 15%;
+}
+
+.mail > .dl-horizontal dd  {
+  margin-left: 20%;
+  margin-bottom: 5px;
+  text-overflow: ellipsis;
+}
+
+.mailform {
+  background-color: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  margin: 10px 0px;
+  padding: 40px;
+}
+
+.mailform > .dl-horizontal dt  {
+  width: 15%;
+}
+
+.mailform > .dl-horizontal dd  {
+  margin-left: 20%;
+  margin-bottom: 5px;
+  text-overflow: ellipsis;
+}
+
+.form-group > label {
+  font-weight: bold;
+  line-height: 1.4;
+  font-size: 15px;
+}
+
+.btn-back {
+  left:0;
+}
+
+.btn-round {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  background-color: #0079a1;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+}
+
+.btn-round:hover {
+  background-color: #34495e;
+  color: #fff;
+}

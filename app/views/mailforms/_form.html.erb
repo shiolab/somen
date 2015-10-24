@@ -1,0 +1,93 @@
+<%= form_for shallow_args(@organization, @mailform), class: "form-horizontal" do |f| %>
+
+  <% if @mailform.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mailform.errors.count, "error") %> prohibited this mailform from being saved:</h2>
+
+      <ul>
+      <% @mailform.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="page-header">
+  <h1 id="tables"><%= @mailform.organization.name %></h1>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="pull-left">
+      <p>
+      <%#= link_to organization_mailforms_path(@organization), class: "btn-round btn-back" do %>
+      <% if @mailform.id %>
+      <%= link_to mailform_path(@mailform), class: "btn-round btn-back" do %>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+      <% end %>
+      <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="row mailform">
+  <div class="form-group">
+    <label class="col-sm-2 control-label">件名:</label>
+    <div class="col-sm-10">
+      <p class="form-control-static"><%= f.text_field :subject, class:"form-control", style: 'width:100%;' %></p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">To:</label>
+    <div class="col-sm-10">
+      <span id="helpBlock" class="help-block">改行することで複数のメールアドレスを入力できます。</span>
+      <p class="form-control-static"><%= f.text_area :to, class:"form-control", style:'width:100%;' %></p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">From:</label>
+    <div class="col-sm-10">
+      <span id="helpBlock" class="help-block">エイリアスを設定する場合は<code>マイクロソフト&lt;hoge@fuga.com&gt;</code>のように入力してください。</span>
+      <p class="form-control-static"><%= f.text_field :sender, class:"form-control", style: 'width:100%;' %></p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">本文:</label>
+    <div class="col-sm-10">
+      <p class="form-control-static">
+        <span id="helpBlock" class="help-block">URLを記載する部分に<code>[url]</code>と設定してください。</span>
+        <%= f.text_area :body, class:"form-control", style: 'width:100%;height:200px;' %>
+      </p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">ランディングページ:</label>
+    <div class="col-sm-10">
+      <span id="helpBlock" class="help-block">例：<code>/hoge.html</code></span>
+      <p class="form-control-static"><%= f.text_field :landing_page, class:"form-control", style: 'width:100%;' %></p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">非表示:</label>
+    <div class="col-sm-10">
+      <p class="form-control-static"><%= f.check_box :is_hidden %></p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="pull-left">
+      <p>
+      <%= f.submit class:"btn btn-success" %>
+      </p>
+    </div>
+  </div>
+</div>
+<% end %>

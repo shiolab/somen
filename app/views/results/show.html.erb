@@ -1,0 +1,90 @@
+
+<% content_for :actions do %>
+  <div class="action-area">
+    <%= link_to mailform_results_path(@mailform), class: "btn-round btn-back" do %>
+      <span class="glyphicon glyphicon-arrow-left"></span>
+    <% end %>
+  </div>
+<% end %>
+
+<%= yield :actions %>
+
+<div class="panel panel-default">
+  <!-- List group -->
+  <a class="btn btn-primary" style="width:100%;" role="button" data-toggle="collapse" href="#collapseMailform" aria-expanded="true" aria-controls="collapseMailform">
+    <%= @mailform.organization.name %> | <%= @mailform.subject %>
+  </a>
+  <div class="collapse" id="collapseMailform">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <p>件名:</p>
+        <p><%= @mailform.subject %></p>
+      </li>
+      <li class="list-group-item">
+        <p>To:</p>
+        <p><%= hbr @mailform.to %></p>
+      </li>
+      <li class="list-group-item">
+        <p>From:</p>
+        <p><%= @mailform.sender %></p>
+      </li>
+    </ul>
+    <div class="panel-body">
+      <p><%= hbr @mailform.body %></p>
+    </div>
+  </div>
+</div>
+
+<div>
+  <a class="btn btn-info" style="width:100%;" role="button" data-toggle="collapse" href="#collapseAccess" aria-expanded="true" aria-controls="collapseAccess">
+    アクセスログ <span class="badge"><%= @history.access_logs.count %></span>
+  </a>
+  <div class="collapse in" id="collapseAccess">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>アクセス日時</th>
+          <th>To</th>
+          <th>Key</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @history.access_logs.each do |access| %>
+          <tr>
+            <td><%= hdatetime access.created_at %></td>
+            <td><%= SentLog.find_by(mailform_id: access.mailform_id, key: access.key).try(:to) %></td>
+            <td><%= access.key %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div style="margin-bottom:20px;">
+  <a class="btn btn-info" style="width:100%;" role="button" data-toggle="collapse" href="#collapseSent" aria-expanded="true" aria-controls="collapseSent">
+    送信ログ <span class="badge"><%= @history.sent_logs.count %>
+  </a>
+  <div class="collapse in" id="collapseSent">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>送信日時</th>
+          <th>To</th>
+          <th>Key</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @history.sent_logs.each do |sent| %>
+          <tr>
+            <td><%= hdatetime sent.created_at %></td>
+            <td><%= sent.to %></td>
+            <td><%= sent.key %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= yield :actions %>
